@@ -1,0 +1,7 @@
+python -m pip install selenium: selenium libraries
+pip install pytest:python unit test framework
+pip install pytest.html:Pytest html Reports
+pip install pytest.xdist:Run test parallel
+pip install Openpyxl:Ms excel support
+pip install Allure-pytest:to genrate allure report
+python.exe -m pip install --upgrade pip:for updated version of pip

@@ -1,0 +1,3 @@
+pytest -v -s testCases/test_login.py --browser chrome
+pytest -v -s  n=2 testCases/test_login.py --browser chrome :for parallell run 2 browsers
+pytest -v -s --html=Reports\report.html  testCases/test_login.py --browser chrome: for html reports
