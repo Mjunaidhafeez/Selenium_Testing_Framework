@@ -60,7 +60,7 @@ class Test_003_Add_Patient():
             self.searchpatient.setgender(self.gender)
             self.searchpatient.setdateofbirth(self.date_of_birth)
             self.searchpatient.clickonsearchbtn()
-            self.logger.info("********************Search Patient Successsfully******************")
+            # self.logger.info("********************Search Patient Successsfully******************")
             try:
                 new_patient=self.searchpatient.click_btn_create_patient()
                 if new_patient>0:
