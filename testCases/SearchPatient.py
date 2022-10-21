@@ -61,33 +61,33 @@ class Test_003_Add_Patient():
             self.searchpatient.setdateofbirth(self.date_of_birth)
             self.searchpatient.clickonsearchbtn()
             self.logger.info("********************Search Patient Successsfully******************")
-            # try:
-            new_patient=self.searchpatient.click_btn_create_patient()
-            if new_patient>0:
-                self.logger.info("********************Create Patient Start******************")
-                # self.createpatient.setlastname(self.randomdata)
-                # self.createpatient.setlastname(self.last_name)
-                self.createpatient = CreatePatient(self.driver)
-                self.createpatient.setnickname(self.nick_name)
-                self.createpatient.setsuffix(self.suffix)
-                self.createpatient.setssn(self.ssn)
-                self.createpatient.setpatientid(self.external_id)
-                self.createpatient.setrace(self.race)
-                self.createpatient.setethinicicty(self.ethinicity)
-                self.createpatient.setdefault_location(self.default_location)
-                self.createpatient.setstate(self.state)
-                self.createpatient.setcity(self.city)
-                self.createpatient.click_btn_save()
+            try:
+                new_patient=self.searchpatient.click_btn_create_patient()
+                if new_patient>0:
+                    self.logger.info("********************Create Patient Start******************")
+                    # self.createpatient.setlastname(self.randomdata)
+                    # self.createpatient.setlastname(self.last_name)
+                    self.createpatient = CreatePatient(self.driver)
+                    self.createpatient.setnickname(self.nick_name)
+                    self.createpatient.setsuffix(self.suffix)
+                    self.createpatient.setssn(self.ssn)
+                    self.createpatient.setpatientid(self.external_id)
+                    self.createpatient.setrace(self.race)
+                    self.createpatient.setethinicicty(self.ethinicity)
+                    self.createpatient.setdefault_location(self.default_location)
+                    self.createpatient.setstate(self.state)
+                    self.createpatient.setcity(self.city)
+                    self.createpatient.click_btn_save()
 
-            else:
-                self.logger.info("********************Edit Patient Start******************")
-                self.eidtpatient=EditPatient(self.driver)
-                self.eidtpatient.setdemo_suffix(self.suffix)
-                self.eidtpatient.click_btndemo_save()
+                else:
+                    self.logger.info("********************Edit Patient Start******************")
+                    self.eidtpatient=EditPatient(self.driver)
+                    self.eidtpatient.setdemo_suffix(self.suffix)
+                    self.eidtpatient.click_btndemo_save()
 
-            # except Exception as e:
-            #     print("Oops!", e, "occurred.")
-            #     break
+            except Exception as e:
+                print("Oops!", e, "occurred.")
+                break
 
 
 
