@@ -1,8 +1,9 @@
 import random
 import string
 import time
-
+import allure
 import pytest
+import openpyxl
 from selenium.webdriver.common.by import By
 from pageObjects.EthizoLoginPage import loginpage
 from utilities.readProperties import ReadConfig
@@ -60,7 +61,7 @@ class Test_003_Add_Patient():
             self.searchpatient.setgender(self.gender)
             self.searchpatient.setdateofbirth(self.date_of_birth)
             self.searchpatient.clickonsearchbtn()
-            # self.logger.info("********************Search Patient Successsfully******************")
+            self.logger.info("********************Search Patient Successsfully******************")
             try:
                 new_patient=self.searchpatient.click_btn_create_patient()
                 if new_patient>0:
@@ -78,16 +79,49 @@ class Test_003_Add_Patient():
                     self.createpatient.setstate(self.state)
                     self.createpatient.setcity(self.city)
                     self.createpatient.click_btn_save()
+                    self.logger.info("********************Validation Of New Patient Data******************")
+                    self.msg = self.driver.find_element(By.TAG_NAME, 'Body').text
+                    print(self.msg)
+                    if 'New Patient Data Saved Successfully' in self.msg:
+                        # assert True == True
+                        self.logger.info("********************New Patient Data Add Test Passed******************")
+                    else:
+                        self.driver.save_screenshot('H:\\Selenium_Test_Project\\ScreenShots\\' + 'test_AddPatient_src.png')
+                        self.logger.error("********************New Patient Data Add Test Failed******************")
+                        # assert True == False
+                    self.createpatient.click_btn_close()
+                    self.createpatient.click_btn_dashboard()
+                    self.searchpatient.clickonadrppatient()
+                    self.searchpatient.clickonaddnewpatient()
+                    time.sleep(5)
+                    # # load workbook
+                    # b = openpyxl.load_workbook('H:\\Selenium_Test_Project\\TestData\\data.xlsx')
+                    # # get active worksheet
+                    # sh = b.active
+                    # # write value in third row, 8th column
+                    # sh.cell(row=3, column=8).value = "Selenium Python"
+                    # # save workbook
+                    # b.save("H:\\Selenium_Test_Project\\TestData\\data.xlsx")
+                    # # identify cell
+                    # cl = sh.cell(row=3, column=8)
+                    # # read cell value
+                    # print("Reading value from row-3, col-8: ")
+                    # print(cl.value)
 
                 else:
                     self.logger.info("********************Edit Patient Start******************")
-                    self.eidtpatient=EditPatient(self.driver)
-                    self.eidtpatient.setdemo_suffix(self.suffix)
-                    self.eidtpatient.click_btndemo_save()
-
+                    self.editpatient=EditPatient(self.driver)
+                    time.sleep(5)
+                    self.editpatient.clickon_btn_demo()
+                    time.sleep(5)
+                    self.editpatient.setdemo_suffix(self.suffix)
+                    self.editpatient.click_btndemo_save()
+                    time.sleep(5)
             except Exception as e:
                 print("Oops!", e, "occurred.")
-                break
+
+            # self.driver.close()
+            # self.logger.info("********************Ending Of Patient Data Page******************")
 
 
 

@@ -5,23 +5,23 @@ from selenium.webdriver.chrome.service import Service
 def setup(browser):
 
     if browser=='chrome':
-        # service_obj = Service('C:\\Users\HP\PycharmProjects\Selenium_Test_Project\Driver\chromedriver.exe')
+        service_obj = Service('H:\\Selenium_Test_Project\Driver\chromedriver.exe')
         print('launching chrome browser')
         driver = webdriver.Chrome()
-        # driver = webdriver.Chrome(service=service_obj)
+        driver = webdriver.Chrome(service=service_obj)
     elif browser=='firefox':
         print('launching chrome browser')
         driver = webdriver.Firefox()
-        # service_obj = Service('C:\\Users\HP\PycharmProjects\Selenium_Test_Project\Driver\chromedriver.exe')
+        # service_obj = Service('H:\\Selenium_Test_Project\Driver\chromedriver.exe')
         # driver = webdriver.Chrome(service=service_obj)
     elif browser=='edge':
         print('launching chrome browser')
         driver = webdriver.Ie()
     else:
-        # service_obj = Service('C:\\Users\HP\PycharmProjects\Selenium_Test_Project\Driver\chromedriver.exe')
+        service_obj = Service('H:\\Selenium_Test_Project\Driver\chromedriver.exe')
         print('launching chrome browser')
         driver = webdriver.Chrome()
-        # driver = webdriver.Chrome(service=service_obj)
+        driver = webdriver.Chrome(service=service_obj)
     return driver
 
 def pytest_addoption(parser):
@@ -32,6 +32,8 @@ def browser(request):
     return request.config.getoption("--browser")
 ###############################pyest html report###################
 # IT IS A HOOOK FOR ADDING ENVIORNMENT INFO TO HTML REPORT
+def pytest_html_report_title(report):
+    report.title = "Ethizo Report"
 def pytest_configure(config):
     config._metadata['Project Name'] ='Ethezo'
     config._metadata['Module Name'] ='patient'

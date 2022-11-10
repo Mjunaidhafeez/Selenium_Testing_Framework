@@ -22,6 +22,8 @@ class CreatePatient:
     txt_defaultlocation1_css = '#ui-select-choices-row-5-0 > a > span'
     btn_save_xpath='/html/body/div[2]/div[10]/div[1]/div[2]/div[2]/div/div/form/div/div[2]/div/button[2]'
     # txt_state1_css = '#default_locations > input.form-control.ui-select-search.ng-pristine.ng-valid.ng-hide'
+    btn_close_patient_css='a[once-attr-id=closePatientTab_1]'
+    btn_dash_board_link='Dashboard'
 
 
     def clickoncreatepatient(self):
@@ -49,8 +51,9 @@ class CreatePatient:
         except Exception as e:
             print(e)
     def setethinicicty(self,value):
+        self.driver.find_element(By.CSS_SELECTOR, self.txt_ethinicity_css).clear()
         self.driver.find_element(By.CSS_SELECTOR, self.txt_ethinicity_css).send_keys(value)
-        self.driver.find_element(By.CSS_SELECTOR, self.txt_ethinicity1_css).click()
+        # self.driver.find_element(By.CSS_SELECTOR, self.txt_ethinicity1_css).click()
 
     def setdefault_location(self,value):
         try:
@@ -73,6 +76,11 @@ class CreatePatient:
     def click_btn_save(self):
         self.driver.find_element(By.XPATH, self.btn_save_xpath).click()
 
+    def click_btn_close(self):
+        self.driver.find_element(By.CSS_SELECTOR, self.btn_close_patient_css).click()
+
+    def click_btn_dashboard(self):
+        self.driver.find_element(By.LINK_TEXT, self.btn_dash_board_link).click()
 
 
 

@@ -1,3 +1,8 @@
 pytest -v -s testCases/test_login.py --browser chrome
 pytest -v -s  n=2 testCases/test_login.py --browser chrome :for parallell run 2 browsers
-pytest -v -s --html=Reports\report.html  testCases/test_login.py --browser chrome: for html reports
+pytest -v --html=Reports\report.html  testCases/test_login.py --browser chrome: for html reports
+—self-contained-html
+-n 5
+pytest -v -s  --alluredir="H:\\Selenium_Test_Project\Reports" testCases/test_login.py --browser chrome
+
+allure serve H:\Selenium_Test_Project\Reports
